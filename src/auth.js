@@ -16,6 +16,16 @@ class Auth {
         Event.$emit('userLoggedIn');
     }
 
+    logout() {
+        localStorage.clear();
+        axios.defaults.headers.common['Authorization'] = null;
+
+        this.token = null;
+        this.user = null;
+
+        Event.$emit('userLoggedOut');
+    }
+
     check () {
         return !! this.token;
     }

@@ -17,26 +17,30 @@
 
 <script>
 export default {
-    data() {
-        return {
-            authenticated: auth.check(),
-            user: auth.user
-        };
-    },
+  data() {
+    return {
+      authenticated: auth.check(),
+      user: auth.user
+    };
+  },
 
-    mounted() {
-        Event.$on('userLoggedIn', () => {
-            this.authenticated = true;
-            this.user = auth.user;
-        });
-    },
-}
+  mounted() {
+    Event.$on("userLoggedIn", () => {
+      this.authenticated = true;
+      this.user = auth.user;
+    });
+    Event.$on("userLoggedOut", () => {
+      this.authenticated = false;
+      this.user = null;
+    });
+  }
+};
 </script>
 
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
