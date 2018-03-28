@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import auth from './auth'
+import Auth from './auth.js'
 
-window.auth = auth
-window.Event = new Vue()
 window.axios = require('axios')
+window.auth = new Auth()
 
+window.Event = new Vue()
 Vue.config.productionTip = false
+
 
 new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+

@@ -1,15 +1,8 @@
 <template>
   <div class="home">
     <div id="placeholder">
-      <h1>Logging out...</h1> 
-    </div>
-    <div id="success" class="result-div ">
-      <h1>You have successfully logged out!</h1>
-      <h2>You will be redirected shortly.</h2>
-    </div>
-    <div id="failure" class="result-div">
-      <h1>There was an issue during logout.</h1>
-      <h2>Please wait a few minutes and try again.</h2>
+      <h1>{{msgBig}}</h1>
+      <h2 >{{msgSmall}}</h2>
     </div>
   </div>
 </template>
@@ -17,21 +10,30 @@
 <script>
 
 export default {
+    data () {
+      return{
+      msgBig: 'Loging you out...',
+      msgSmall: ''
+      }
+    },
     methods: {
-        init(){
+      init(){
           axios
             .post('http://127.0.0.1:8000/api/logout')
             .then(({data}) => {
-              document.getElementById('placeholder').style.visibility = 'visible';
-              document.getElementById('success').style.visibility = 'visible';
+              this.msgBig = 'You have successfully logged out!'
+              this.msgSmall = 'You will be redirected shortly.'
               auth.logout();
               setTimeout(() => {
                 this.$router.push('/')
-              }, 2000)
+              }, 1000)
             })
             .catch(({response}) => {
-              document.getElementById('placeholder').style.visibility = 'visible';              
-              document.getElementById('failure').style.visibility = 'visible';            
+              this.msgBig = 'There was an issue during logout.'
+              this.msgSmall = `Please wait a bit and try again.`
+              setTimeout(() => {
+                this.$router.push('/logout')
+              }, 1000)
             })
         }
     },

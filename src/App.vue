@@ -1,13 +1,11 @@
 <template>
   <div id="app">
-    
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/dashboard">Dashboard</router-link> |
       <div v-if="authenticated && user">
           <p>Hello, {{ user.name }}</p>
-
           <router-link to="/logout">Logout</router-link>
       </div>
       <router-link to="/login" v-else>Login</router-link>
