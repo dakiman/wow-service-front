@@ -3,9 +3,9 @@
         <h1>Login</h1>
 
         <p>
-            <label for="username">Email</label>
+            <label for="email">Email</label>
 
-            <input type="text" name="username" v-model="username">
+            <input type="text" name="email" v-model="email">
         </p>
 
         <p>
@@ -22,7 +22,7 @@
 export default {
   data() {
     return {
-      username: "daki@daki.com",
+      email: "daki@daki.com",
       password: "password"
     };
   },
@@ -30,7 +30,7 @@ export default {
   methods: {
     login() {
       let data = {
-        username: this.username,
+        email: this.email,
         password: this.password
       };
 
