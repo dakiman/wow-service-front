@@ -13,15 +13,17 @@ export default {
   data() {
     return {
       info: "This is char info",
-      character: "Packaged",
+      character: "Juliakulia",
       realm: "the-maelstrom"
     };
   },
   methods: {
     getCharacter() {
+      // delete axios.defaults.headers.common['Authorization'];
       axios.get(url.getCharacter(this.realm, this.character), {
       // axios.get('https://eu.api.battle.net/wow/data/character/races?locale=en_GB&apikey=f8g9xhcpeebdcpma9a5u8fpnswqfwcaa', {
-        // headers: {'Access-Control-Allow-Origin': '*'}
+        // headers: {Authorization: null}
+      transformRequest: [(data, headers) => { delete headers.common.Authorization; return data }]
       })
         .then(({data}) => {
           this.info = JSON.stringify(data)
