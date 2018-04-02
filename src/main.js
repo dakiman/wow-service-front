@@ -4,11 +4,13 @@ import router from './router'
 import Auth from './modules/auth.js'
 import Api from './modules/api.js';
 import Url from './modules/url.js';
+import Info from './modules/info.js';
 
 window.axios = require('axios')
-window.url = new Url();
-window.api = new Api();
+window.url = new Url()
+window.api = new Api()
 window.auth = new Auth()
+window.info = new Info()
 
 window.Event = new Vue()
 Vue.config.productionTip = false

@@ -1,12 +1,13 @@
 class Auth {
   constructor() {
-    this.token = window.localStorage.getItem('token');
-
-    let userData = window.localStorage.getItem('user');
-    this.user = userData ? JSON.parse(userData) : null;
+    this.token = window.localStorage.getItem('token')
+    //get the user from local storage
+    let userData = window.localStorage.getItem('user')
+    this.user = userData ? JSON.parse(userData) : null
 
     if (this.token) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.token;
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.token
+      this.getUser()
     }
   }
 
@@ -35,12 +36,12 @@ class Auth {
     return !!this.token;
   }
 
-  // getUser() {
-  //   api.call('get', '127.0.0.1:8000/api/user')
-  //     .then(({ user }) => {
-  //       this.user = user;
-  //     })
-  // }
+  getUser() {
+    api.call('get', '127.0.0.1:8000/api/user')
+      .then(({ user }) => {
+        this.user = user;
+      })
+  }
 }
 
 export default Auth;

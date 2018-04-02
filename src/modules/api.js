@@ -2,10 +2,7 @@ class Api {
   constructor() {
 
   }
-  call(requestType, url, data = null, outside = false) {
-    if(outside) {
-      axios.defaults.headers.common['Authorization'] = null;
-    }
+  call(requestType, url, data = null) {
     return new Promise((resolve, reject) => {
       axios[requestType](url, data)
         .then(response => {
@@ -19,6 +16,18 @@ class Api {
         });
     });
   }
+  callWow(url, data = null) {
+    return new Promise((resolve, reject) => {
+      axios.get(url, { transformRequest: [(data, headers) => { delete headers.common.Authorization; return data }] })
+        .then(response => {
+          resolve(response);
+        })
+        .catch(({ response }) => {
+          reject(response);
+        });
+    });
+  }
+
 }
 
 export default Api

@@ -2,9 +2,14 @@
   <div class="dashboard">
     <h1>Dashboard</h1>
     <p v-html="info"></p>
-    <button @click="getCharacter">Get character</button>
+    <button @click="getChar">Get character</button>
     <input type="text" v-model="character">
     <input type="text" v-model="realm">
+    <div class="info-container">
+      <span v-html="battlegroup"></span>
+      <br>
+      <span v-html="className"></span>
+    </div>
   </div>
 </template>
 
@@ -13,25 +18,28 @@ export default {
   data() {
     return {
       info: "This is char info",
-      character: "Juliakulia",
-      realm: "the-maelstrom"
+      character: "Sernaos",
+      realm: "The Maelstrom",
+      battlegroup: "",
+      className: ""
     };
   },
   methods: {
-    getCharacter() {
-      // delete axios.defaults.headers.common['Authorization'];
-      axios.get(url.getCharacter(this.realm, this.character), {
-      // axios.get('https://eu.api.battle.net/wow/data/character/races?locale=en_GB&apikey=f8g9xhcpeebdcpma9a5u8fpnswqfwcaa', {
-        // headers: {Authorization: null}
-      transformRequest: [(data, headers) => { delete headers.common.Authorization; return data }]
-      })
-        .then(({data}) => {
-          this.info = JSON.stringify(data)
+    getChar() {
+      api
+        .callWow(url.getCharacter(this.realm, this.character))
+        .then(({ data }) => {
+          this.className = info.getClass(data.class);
+          this.battlegroup = data.battlegroup;
         })
-        .catch(({response}) => {
-          console.log(response);
-        })
+        .catch(response => console.log(response));
     }
   }
-}
+};
 </script>
+
+<style>
+.info-container {
+  margin-top: 20px;
+}
+</style>
