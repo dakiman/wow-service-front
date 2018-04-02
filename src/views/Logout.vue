@@ -10,36 +10,36 @@
 <script>
 
 export default {
-    data () {
-      return{
+  data () {
+    return {
       msgBig: 'Loging you out...',
       msgSmall: ''
-      }
-    },
-    methods: {
-      init(){
-          axios
-            .post('http://127.0.0.1:8000/api/logout')
-            .then(({data}) => {
-              this.msgBig = 'You have successfully logged out!'
-              this.msgSmall = 'You will be redirected shortly.'
-              auth.logout();
-              setTimeout(() => {
-                this.$router.push('/')
-              }, 1000)
-            })
-            .catch(({response}) => {
-              this.msgBig = 'There was an issue during logout.'
-              this.msgSmall = `Please wait a bit and try again.`
-              setTimeout(() => {
-                this.$router.push('/logout')
-              }, 1000)
-            })
-        }
-    },
-    mounted() {
-      this.init();
     }
+  },
+  methods: {
+    init () {
+      axios
+        .post('http://127.0.0.1:8000/api/logout')
+        .then(({data}) => {
+          this.msgBig = 'You have successfully logged out!'
+          this.msgSmall = 'You will be redirected shortly.'
+          auth.logout()
+          setTimeout(() => {
+            this.$router.push('/')
+          }, 1000)
+        })
+        .catch(({response}) => {
+          this.msgBig = 'There was an issue during logout.'
+          this.msgSmall = `Please wait a bit and try again.`
+          setTimeout(() => {
+            this.$router.push('/logout')
+          }, 1000)
+        })
+    }
+  },
+  mounted () {
+    this.init()
+  }
 }
 </script>
 

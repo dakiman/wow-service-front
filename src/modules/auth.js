@@ -1,7 +1,7 @@
 class Auth {
-  constructor() {
+  constructor () {
     this.token = window.localStorage.getItem('token')
-    //get the user from local storage
+    // get the user from local storage
     let userData = window.localStorage.getItem('user')
     this.user = userData ? JSON.parse(userData) : null
 
@@ -11,37 +11,37 @@ class Auth {
     }
   }
 
-  login(token, user) {
-    window.localStorage.setItem('token', token);
-    window.localStorage.setItem('user', JSON.stringify(user));
+  login (token, user) {
+    window.localStorage.setItem('token', token)
+    window.localStorage.setItem('user', JSON.stringify(user))
 
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
 
-    this.token = token;
-    this.user = user;
+    this.token = token
+    this.user = user
 
-    Event.$emit('userLoggedIn');
+    Event.$emit('userLoggedIn')
   }
 
-  logout() {
-    localStorage.clear();
+  logout () {
+    localStorage.clear()
 
-    this.token = null;
-    this.user = null;
+    this.token = null
+    this.user = null
 
-    Event.$emit('userLoggedOut');
+    Event.$emit('userLoggedOut')
   }
 
-  check() {
-    return !!this.token;
+  check () {
+    return !!this.token
   }
 
-  getUser() {
+  getUser () {
     api.call('get', '127.0.0.1:8000/api/user')
       .then(({ user }) => {
-        this.user = user;
+        this.user = user
       })
   }
 }
 
-export default Auth;
+export default Auth

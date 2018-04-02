@@ -37,8 +37,6 @@ let routes = [
   }
 ]
 
-
-
 const router = new Router({
   routes
 })

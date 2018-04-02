@@ -15,27 +15,27 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      info: "This is char info",
-      character: "Sernaos",
-      realm: "The Maelstrom",
-      battlegroup: "",
-      className: ""
-    };
+      info: 'This is char info',
+      character: 'Sernaos',
+      realm: 'The Maelstrom',
+      battlegroup: '',
+      className: ''
+    }
   },
   methods: {
-    getChar() {
+    getChar () {
       api
         .callWow(url.getCharacter(this.realm, this.character))
         .then(({ data }) => {
-          this.className = info.getClass(data.class);
-          this.battlegroup = data.battlegroup;
+          this.className = info.getClass(data.class)
+          this.battlegroup = data.battlegroup
         })
-        .catch(response => console.log(response));
+        .catch(response => console.log(response))
     }
   }
-};
+}
 </script>
 
 <style>

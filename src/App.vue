@@ -16,26 +16,25 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       authenticated: auth.check(),
       user: auth.user
-    };
+    }
   },
 
-  mounted() {
-    Event.$on("userLoggedIn", () => {
-      this.authenticated = true;
-      this.user = auth.user;
-    });
-    Event.$on("userLoggedOut", () => {
-      this.authenticated = false;
-      this.user = null;
-    });
+  mounted () {
+    Event.$on('userLoggedIn', () => {
+      this.authenticated = true
+      this.user = auth.user
+    })
+    Event.$on('userLoggedOut', () => {
+      this.authenticated = false
+      this.user = null
+    })
   }
-};
+}
 </script>
-
 
 <style lang="scss">
 #app {
