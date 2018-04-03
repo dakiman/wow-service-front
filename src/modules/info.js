@@ -19,6 +19,12 @@ class Info {
     }
     return classes[classId]
   }
+  getRace (raceId) {
+    let races = {
+      1: 'Human'
+    }
+    return races[raceId]
+  }
 }
 
 export default Info

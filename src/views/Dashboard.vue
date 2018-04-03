@@ -1,14 +1,26 @@
 <template>
   <div class="dashboard">
-    <h1>Dashboard</h1>
-    <p v-html="info"></p>
-    <button @click="getChar">Get character</button>
-    <input type="text" v-model="character">
-    <input type="text" v-model="realm">
-    <div class="info-container">
-      <span v-html="battlegroup"></span>
-      <br>
-      <span v-html="className"></span>
+    <div class="container">
+      <div class="columns is-8">
+        <div class="column is-one-third">
+          <div class="field">
+            <label class="label">Character Name</label>
+            <input class="input is-small sharpen" type="text" placeholder="Character" v-model="name">
+          </div>
+          <div class="field">
+            <label class="label ">Realm</label>
+            <input class="input is-small sharpen" type="text" placeholder="Realm" v-model="realm">
+          </div>
+          <div class="field">
+            <button v-bind:class="{ 'is-loading': loading }" class="button is-primary sharpen" @click="getChar">Search</button>
+          </div>
+        </div>
+        <div class="column has-text-left" v-if="character.name">
+          <span class="">{{ character.name }} , Level {{ character.level }} {{ character.race }} {{ character.className }}</span>
+          <br>
+          <img :src="'https://render-eu.worldofwarcraft.com/character/' + character.thumbnail" alt="">
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -17,29 +29,47 @@
 export default {
   data () {
     return {
-      info: 'This is char info',
-      character: 'Sernaos',
-      realm: 'The Maelstrom',
-      battlegroup: '',
-      className: ''
+      loading: false,
+      name: 'Dakis',
+      realm: 'the maelstrom',
+      character: {
+        name: '',
+        faction: '',
+        level: '',
+        race: '',
+        className: '',
+        battlegroup: '',
+        thumbnail: ''
+      }
     }
   },
   methods: {
     getChar () {
+      this.loading = true
       api
-        .callWow(url.getCharacter(this.realm, this.character))
+        .callWow(url.getCharacter(this.realm, this.name))
         .then(({ data }) => {
-          this.className = info.getClass(data.class)
-          this.battlegroup = data.battlegroup
+          console.log(data)
+          this.character.name = data.name
+          this.character.faction = data.faction
+          this.character.level = data.level
+          this.character.race = info.getRace(data.race)
+          this.character.className = info.getClass(data.class)
+          this.character.battlegroup = data.battlegroup
+          this.character.thumbnail = data.thumbnail
+          this.loading = false
         })
-        .catch(response => console.log(response))
+        .catch(response => { console.log(response); this.loading = false})
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .info-container {
   margin-top: 20px;
+}
+.button {
+  width: 100%;
 }
 </style>

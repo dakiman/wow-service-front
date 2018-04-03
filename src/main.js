@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import 'bulma/css/bulma.css'
 import Auth from './modules/auth.js'
 import Api from './modules/api.js'
 import Url from './modules/url.js'

@@ -54,4 +54,7 @@ export default {
     }
   }
 }
+.sharpen {
+  border-radius: 0 !important;
+}
 </style>
