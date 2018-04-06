@@ -8,9 +8,8 @@ const state = {
 }
 
 const mutations = {
-  setCharacter(state, character) {
-    state.character = character;
-  },
+  unsetCharacter: state => state.character = {},
+  setCharacter: (state, character) => state.character = character
 }
 
 const getters = {
