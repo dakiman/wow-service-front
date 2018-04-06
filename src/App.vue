@@ -22,7 +22,6 @@ export default {
       user: auth.user
     }
   },
-
   mounted () {
     Event.$on('userLoggedIn', () => {
       this.authenticated = true
