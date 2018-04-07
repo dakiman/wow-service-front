@@ -46,6 +46,7 @@ export default {
       api
         .callWow(url.getCharacter(this.realm, this.name))
         .then(({ data }) => {
+          console.log(data)
           this.$store.commit("setCharacter", data);
           this.loading = false;
         })

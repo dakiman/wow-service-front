@@ -5,16 +5,21 @@
         <div class="column is-one-third">
           <CharacterDisplay></CharacterDisplay>
         </div>
-        <div class="column" >
-          
+        <div class="column">
+          <router-link to="/dashboard/items">Items</router-link>
         </div>
       </div>
     </div>
+    <div class="container">
+      <div class="column">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
+
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import CharacterDisplay from "@/components/CharacterDisplay.vue";
 
 export default {
