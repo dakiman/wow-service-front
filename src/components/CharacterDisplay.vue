@@ -2,8 +2,8 @@
   <div class="characterDisplay">
     <div class="column">
       <div class="box m-t-20">
-        <figure v-if="character.name" figure class="avatar">
-          <img :src="'https://render-eu.worldofwarcraft.com/character/' + character.thumbnail">
+        <figure v-if="character.name" figure class="avatar ">
+          <img :class="[character.faction ? 'horde-border' : 'alliance-border']" :src="'https://render-eu.worldofwarcraft.com/character/' + character.thumbnail">
         </figure>
         <div v-if="!character.name">
           <div class="field">
@@ -19,7 +19,7 @@
           <button class="button is-block is-primary sharpen is-large is-fullwidth" :class="{ 'is-loading' : loading }" @click="getChar">Search</button>
         </div>
         <div v-else>
-          <span class="">{{ character.name }}, Level {{ character.level }} {{ raceName }} {{ className }}</span>
+          <span class="">{{ character.name }}, Level {{ character.level }} {{ raceName }} <span :style="{ color : classColor }">{{ className }}</span></span>
           <button class="button is-primary sharpen is-fullwidth m-t-25" @click="clearChar">Search another character</button>
           <br>
         </div>
@@ -68,6 +68,9 @@ export default {
     },
     raceName() {
       return info.getRace(this.character.race);
+    },
+    classColor() {
+      return info.getClassColor(this.character.class)
     }
   }
 };
@@ -91,9 +94,17 @@ export default {
   padding: 5px;
   background: #fff;
   border-radius: 50%;
-  -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1),
-    0 0 0 1px rgba(10, 10, 10, 0.1);
-  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+
+}
+.horde-border {
+  -webkit-box-shadow: 0 2px 3px rgba(255, 0, 0, 0.664),
+    0 0 0 1px rgba(255, 0, 0, 0.664);
+  box-shadow: 0 2px 3px rgba(255, 0, 0, 0.664), 0 0 0 1px rgba(255, 0, 0, 0.555);
+}
+.alliance-border {
+  -webkit-box-shadow: 0 2px 3px rgba(0, 17, 255, 0.664),
+    0 0 0 1px rgba(0, 17, 255, 0.664);
+  box-shadow: 0 2px 3px rgba(0, 17, 255, 0.664), 0 0 0 1px rgba(0, 17, 255, 0.664);
 }
 input {
   font-weight: 300;
