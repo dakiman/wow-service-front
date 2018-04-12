@@ -3,28 +3,37 @@
     <h1>Items</h1>
     <ul>
       <li v-for="item in items">
-        <a :href="'http://www.wowhead.com/item=' + item.id">{{item.name}}</a>
+        <item v-if="item.id != undefined" :id="item.id" :name="item.name" :quality="item.quality" :icon="item.icon"></item>
       </li>
-      <a href="http://www.wowhead.com/spell=18562">a</a>
-        <a href="http://www.wowhead.com/item=134365" upgd="3" class=""></a>
+      <a href="#" data-wowhead="item=152361"></a>
+      <a href="#" data-wowhead="item=134365"></a>
     </ul>
   </div>
 </template>
 
+
 <script>
+import Item from "@/components/Item.vue";
 export default {
   data() {
     return {
-      items: "",
+      items: ""
     };
+  },
+  components: {
+    Item
   },
   mounted() {
     api
       .callWow(
-        url.getCharacterData(this.$store.state.character.realm, this.$store.state.character.name, 'items')
+        url.getCharacterData(
+          this.$store.state.character.realm,
+          this.$store.state.character.name,
+          "items"
+        )
       )
       .then(data => {
-        this.items = data.data.items
+        this.items = data.data.items;
       })
       .catch(response => console.log(response));
   },
@@ -34,6 +43,4 @@ export default {
     document.head.appendChild(wowheadTooltips);
   }
 };
-
-
 </script>
