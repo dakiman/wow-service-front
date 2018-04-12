@@ -6,6 +6,7 @@ import Dashboard from './views/Dashboard.vue'
 import Login from './views/Login.vue'
 import Logout from './views/Logout.vue'
 import Items from './views/nested-views/Items.vue'
+import Pets from './views/nested-views/Pets.vue'
 
 Vue.use(Router)
 
@@ -26,7 +27,8 @@ let routes = [
     component: Dashboard,
     meta: { requiresAuth: true },
     children: [
-      { path: 'items', component: Items }
+      { path: 'items', component: Items },
+      { path: 'pets', component: Pets },
     ]
   },
   {

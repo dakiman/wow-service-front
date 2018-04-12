@@ -4,15 +4,16 @@
       <div class="columns is-8">
         <div class="column is-one-third">
           <CharacterDisplay></CharacterDisplay>
+          <CharacterNav></CharacterNav>
         </div>
         <div class="column">
-          <router-link to="/dashboard/items">Items</router-link>
+          <router-view></router-view>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="column">
-        <router-view></router-view>
+
       </div>
     </div>
   </div>
@@ -21,13 +22,15 @@
 
 <script>
 import CharacterDisplay from "@/components/CharacterDisplay.vue";
+import CharacterNav from "@/components/CharacterNav.vue";
 
 export default {
   data() {
     return {};
   },
   components: {
-    CharacterDisplay
+    CharacterDisplay,
+    CharacterNav
   }
 };
 </script>

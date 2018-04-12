@@ -1,16 +1,15 @@
 <template>
-  <div class="items">
-    <h1>Items</h1>
+  <div class="pets">
+    <h1>Pets</h1>
     <ul>
       <item
-        v-for="item in items"
-        :id="item.id"
-        :name="item.name"
-        :type="'item'"
-        :quality="item.quality"
-        :icon="item.icon"
-        :key="item.id"
-        v-if="item.id != undefined"
+        v-for="pet in pets"
+        :id="pet.creatureId"
+        :name="pet.name"
+        :type="'npc'"
+        :quality="pet.qualityId"
+        :icon="pet.icon"
+        :key="pet.index"
       ></item>
     </ul>
   </div>
@@ -22,7 +21,7 @@ import Item from "@/components/Item.vue";
 export default {
   data() {
     return {
-      items: ""
+      pets: ""
     };
   },
   components: {
@@ -34,11 +33,11 @@ export default {
         url.getCharacterData(
           this.$store.state.character.realm,
           this.$store.state.character.name,
-          "items"
+          "pets"
         )
       )
       .then(data => {
-        this.items = data.data.items;
+        this.pets = data.data.pets.collected;
       })
       .catch(response => console.log(response));
   },

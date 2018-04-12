@@ -57,7 +57,8 @@ export default {
         });
     },
     clearChar() {
-      this.$store.commit("unsetCharacter");
+      this.$store.commit("unsetCharacter")
+      this.$router.push('/dashboard')
     }
   },
   computed: {
