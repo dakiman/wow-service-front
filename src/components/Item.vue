@@ -1,5 +1,5 @@
 <template>
-  <div class="item">
+  <div class="items">
       <a :style="{ 'padding-left' : '18px !important', 'background' : 'url(http://wow.zamimg.com/images/wow/icons/tiny/'+ icon + '.gif' + ' ) left center no-repeat' }" :data-wowhead="'item=' + id" :class="['q' + quality]">[{{name}}]</a>
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: "Item",
+  name: "Items",
   data() {
     return {
 

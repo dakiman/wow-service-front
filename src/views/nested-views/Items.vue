@@ -2,9 +2,15 @@
   <div class="items">
     <h1>Items</h1>
     <ul>
-      <li v-for="item in items">
-        <item v-if="item.id != undefined" :id="item.id" :name="item.name" :quality="item.quality" :icon="item.icon"></item>
-      </li>
+      <item
+        v-for="item in items"
+        :id="item.id"
+        :name="item.name"
+        :quality="item.quality"
+        :icon="item.icon"
+        :key="item.id"
+        v-if="item.id != undefined"
+      ></item>
       <a href="#" data-wowhead="item=152361"></a>
       <a href="#" data-wowhead="item=134365"></a>
     </ul>
