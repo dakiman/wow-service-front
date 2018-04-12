@@ -1,27 +1,27 @@
 <template>
   <div class="characterDisplay">
-    <div style>
-      <div v-if="character.name">
-        <div class="column has-text-left" v-if="character.name">
-          <span class="">{{ character.name }}, Level {{ character.level }} {{ raceName }} {{ className }}</span>
-          <br>
-          <img :src="'https://render-eu.worldofwarcraft.com/character/' + character.thumbnail" alt="">
+    <div class="column">
+      <div class="box m-t-20">
+        <figure v-if="character.name" figure class="avatar">
+          <img :src="'https://render-eu.worldofwarcraft.com/character/' + character.thumbnail">
+        </figure>
+        <div v-if="!character.name">
           <div class="field">
-            <button class="button is-primary sharpen" @click="clearChar">Search another character</button>
+            <div class="control">
+              <input class="input is-large sharpen" placeholder="Character Name" autofocus="" v-model="name">
+            </div>
           </div>
+          <div class="field">
+            <div class="control">
+              <input class="input is-large sharpen" placeholder="Your Password" v-model="realm">
+            </div>
+          </div>
+          <button class="button is-block is-primary sharpen is-large is-fullwidth" :class="{ 'is-loading' : loading }" @click="getChar">Search</button>
         </div>
-      </div>
-      <div v-else >
-        <div class="field">
-          <label class="label">Character Name</label>
-          <input class="input is-small sharpen" type="text" placeholder="Character" v-model="name">
-        </div>
-        <div class="field">
-          <label class="label">Realm</label>
-          <input class="input is-small sharpen" type="text" placeholder="Realm" v-model="realm">
-        </div>
-        <div class="field">
-          <button v-bind:class="{ 'is-loading': loading }" class="button is-primary sharpen" @click="getChar">Search</button>
+        <div v-else>
+          <span class="">{{ character.name }}, Level {{ character.level }} {{ raceName }} {{ className }}</span>
+          <button class="button is-primary sharpen is-fullwidth m-t-25" @click="clearChar">Search another character</button>
+          <br>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@ export default {
       api
         .callWow(url.getCharacter(this.realm, this.name))
         .then(({ data }) => {
-          console.log(data)
+          console.log(data);
           this.$store.commit("setCharacter", data);
           this.loading = false;
         })
@@ -74,7 +74,33 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.button {
-  width: 100%;
+.hero.is-success {
+  background: #f2f6fa;
+}
+.hero .nav,
+.hero.is-success .nav {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.avatar {
+  margin-top: -70px;
+  padding-bottom: 20px;
+}
+.avatar img {
+  padding: 5px;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1),
+    0 0 0 1px rgba(10, 10, 10, 0.1);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+}
+input {
+  font-weight: 300;
+}
+p {
+  font-weight: 700;
+}
+p.subtitle {
+  padding-top: 1rem;
 }
 </style>

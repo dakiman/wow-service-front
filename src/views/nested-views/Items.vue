@@ -11,8 +11,6 @@
         :key="item.id"
         v-if="item.id != undefined"
       ></item>
-      <a href="#" data-wowhead="item=152361"></a>
-      <a href="#" data-wowhead="item=134365"></a>
     </ul>
   </div>
 </template>
