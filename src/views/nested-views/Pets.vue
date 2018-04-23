@@ -1,6 +1,6 @@
 <template>
   <div class="pets">
-    <h1>Pets</h1>
+    <!-- <h1>Pets</h1> -->
     <ul>
       <item v-for="pet in uniquePets" :id="pet.creatureId" :name="pet.name" :type="'npc'" :quality="pet.qualityId" :icon="pet.icon" :key="pet.index"></item>
     </ul>
@@ -10,7 +10,6 @@
 
 <script>
 import Item from "@/components/Item.vue";
-import lodash from 'lodash'
 
 export default {
   data() {

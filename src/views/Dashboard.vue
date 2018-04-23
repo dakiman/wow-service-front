@@ -6,7 +6,9 @@
           <CharacterDisplay></CharacterDisplay>
           <CharacterNav></CharacterNav>
         </div>
-        <div class="column">
+        <div class="column box">
+          {{currentRoute}}
+          <!-- {{$route.name}} -->
           <router-view></router-view>
         </div>
       </div>
@@ -23,6 +25,7 @@
 <script>
 import CharacterDisplay from "@/components/CharacterDisplay.vue";
 import CharacterNav from "@/components/CharacterNav.vue";
+import lodash from 'lodash'
 
 export default {
   data() {
@@ -31,6 +34,11 @@ export default {
   components: {
     CharacterDisplay,
     CharacterNav
+  },
+  computed: {
+    currentRoute() {
+      return _.capitalize(this.$route.name);
+    }
   }
 };
 </script>

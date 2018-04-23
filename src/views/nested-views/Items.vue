@@ -1,6 +1,6 @@
 <template>
   <div class="items">
-    <h1>Items</h1>
+    <!-- <h1>Items</h1> -->
     <ul>
       <item
         v-for="item in items"

@@ -7,6 +7,9 @@ import Login from './views/Login.vue'
 import Logout from './views/Logout.vue'
 import Items from './views/nested-views/Items.vue'
 import Pets from './views/nested-views/Pets.vue'
+import SelectHelper from './views/nested-views/SelectHelper.vue'
+import store from './store'
+
 
 Vue.use(Router)
 
@@ -23,12 +26,12 @@ let routes = [
   },
   {
     path: '/dashboard',
-    name: 'dashboard',
     component: Dashboard,
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true},
     children: [
-      { path: 'items', component: Items },
-      { path: 'pets', component: Pets },
+      { path: '', component: SelectHelper, name: 'dashboard' },
+      { path: 'items', component: Items, name: 'items', meta: { requiresCharacter: true } },
+      { path: 'pets', component: Pets, name: 'pets', meta: { requiresCharacter: true } },
     ]
   },
   {
@@ -51,6 +54,12 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth) {
     if (!auth.check()) {
       next({ path: '/login' })
+      return
+    }
+  }
+  if(to.meta.requiresCharacter) {
+    if(_.isEmpty(store.state.character)) {
+      next({ path: '/dashboard' })
       return
     }
   }
