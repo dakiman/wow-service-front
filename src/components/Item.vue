@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-      <a :style="{ 'padding-left' : '18px !important', 'background' : 'url(http://wow.zamimg.com/images/wow/icons/tiny/'+ icon + '.gif' + ' ) left center no-repeat' }" :data-wowhead="type + '=' + id" :class="['q' + quality]">[{{name}}]</a>
+      <a :style="{ 'padding-left' : '40px !important', 'background' : 'url(http://wow.zamimg.com/images/wow/icons/medium/'+ icon + '.jpg' + ' ) left center no-repeat' }" :data-wowhead="type + '=' + id" :class="['q' + quality]">[{{name}}]</a>
   </div>
 </template>
 

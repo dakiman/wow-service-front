@@ -1,0 +1,8 @@
+// $primary: #816758;
+$body-background-color: rgba(23, 24, 31, 0.822);
+$dark: #332c28;
+$box-background-color: darken($body-background-color, 1%);
+// $box-color: #fff;
+$text: #fff;
+
+@import "../../node_modules/bulma/bulma.sass";

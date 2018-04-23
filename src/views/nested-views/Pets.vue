@@ -2,15 +2,7 @@
   <div class="pets">
     <h1>Pets</h1>
     <ul>
-      <item
-        v-for="pet in pets"
-        :id="pet.creatureId"
-        :name="pet.name"
-        :type="'npc'"
-        :quality="pet.qualityId"
-        :icon="pet.icon"
-        :key="pet.index"
-      ></item>
+      <item v-for="pet in uniquePets" :id="pet.creatureId" :name="pet.name" :type="'npc'" :quality="pet.qualityId" :icon="pet.icon" :key="pet.index"></item>
     </ul>
   </div>
 </template>
@@ -18,6 +10,8 @@
 
 <script>
 import Item from "@/components/Item.vue";
+import lodash from 'lodash'
+
 export default {
   data() {
     return {
@@ -26,6 +20,9 @@ export default {
   },
   components: {
     Item
+  },
+  methods: {
+
   },
   mounted() {
     api
@@ -41,8 +38,11 @@ export default {
       })
       .catch(response => console.log(response));
   },
-  created() {
-
+  created() {},
+  computed: {
+    uniquePets: function() {
+      return _.uniqBy(this.pets, 'creatureId')
+    }
   }
 };
 </script>

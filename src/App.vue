@@ -1,65 +1,93 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/dashboard">Dashboard</router-link> |
-      <router-link to="/logout" v-if="authenticated && user">Logout</router-link>
-      <router-link to="/login" v-else>Login</router-link>
-      <div v-if="authenticated && user">
-          <p>Hello, {{ user.name }}</p>
+  <div id="app" class="">
+    <nav class="navbar is-dark light-shadow">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+        </a>
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-    </div>
+
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-end">
+          <router-link class="navbar-item" to="/">Home</router-link>
+          <router-link class="navbar-item" to="/about">About</router-link>
+          <router-link class="navbar-item" to="/dashboard">Dashboard</router-link>
+          <router-link class="navbar-item" to="/logout" v-if="authenticated && user">Logout</router-link>
+          <router-link class="navbar-item" to="/login" v-else>Login</router-link>
+          <div class="navbar-item has-dropdown is-hoverable" v-if="authenticated && user">
+            <div class="navbar-link">
+              Hello, {{user.name}}
+            </div>
+            <div class="navbar-dropdown is-right">
+              <a class="navbar-item is-active" href="">
+                Profile
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       authenticated: auth.check(),
       user: auth.user
-    }
+    };
   },
-  mounted () {
-    Event.$on('userLoggedIn', () => {
-      this.authenticated = true
-      this.user = auth.user
-    })
-    Event.$on('userLoggedOut', () => {
-      this.authenticated = false
-      this.user = null
-    })
+  mounted() {
+    Event.$on("userLoggedIn", () => {
+      this.authenticated = true;
+      this.user = auth.user;
+    });
+    Event.$on("userLoggedOut", () => {
+      this.authenticated = false;
+      this.user = null;
+    });
   }
-}
+};
 </script>
 
 <style lang="scss">
-
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-.sharpen {
-  border-radius: 0 !important;
+.navbar {
+  margin-bottom: 45px;
+  // background-color: #332c28
 }
 
-$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50); // Adjust this to include the pixel amounts you need.
-$sides: (top, bottom, left, right); // Leave this variable alone
+.light-shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+$spaceamounts: (
+  5,
+  10,
+  15,
+  20,
+  25,
+  30,
+  35,
+  40,
+  45,
+  50
+); // Adjust this to include the pixel amounts you need.
+$sides: (
+  top,
+  bottom,
+  left,
+  right
+); // Leave this variable alone
 
 @each $space in $spaceamounts {
   @each $side in $sides {

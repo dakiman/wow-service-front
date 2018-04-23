@@ -1,8 +1,8 @@
 <template>
   <div class="characterDisplay">
-    <div class="column">
-      <div class="box m-t-20">
-        <figure v-if="character.name" figure class="avatar ">
+    <div class="column ">
+      <div class="box m-t-5 is-dark">
+        <figure v-if="character.name" figure class="avatar">
           <img :class="[character.faction ? 'horde-border' : 'alliance-border']" :src="'https://render-eu.worldofwarcraft.com/character/' + character.thumbnail">
         </figure>
         <div v-if="!character.name">
@@ -20,7 +20,7 @@
         </div>
         <div v-else>
           <span class="">{{ character.name }}, Level {{ character.level }} {{ raceName }} <span :style="{ color : classColor }">{{ className }}</span></span>
-          <button class="button is-primary sharpen is-fullwidth m-t-25" @click="clearChar">Search another character</button>
+          <button class="button is-primary sharpen is-fullwidth m-t-25 light-shadow" @click="clearChar">Search another character</button>
           <br>
         </div>
       </div>
