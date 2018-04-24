@@ -1,6 +1,8 @@
 <template>
   <div class="items">
     <!-- <h1>Items</h1> -->
+<pulse-loader :loading="true"></pulse-loader>
+
     <ul>
       <item
         v-for="item in items"
@@ -19,6 +21,8 @@
 
 <script>
 import Item from "@/components/Item.vue";
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+
 export default {
   data() {
     return {
@@ -26,7 +30,8 @@ export default {
     };
   },
   components: {
-    Item
+    Item,
+    PulseLoader
   },
   mounted() {
     api
