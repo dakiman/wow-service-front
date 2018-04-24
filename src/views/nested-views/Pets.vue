@@ -24,6 +24,7 @@ export default {
 
   },
   mounted() {
+    this.$store.commit("enableLoading");
     api
       .callWow(
         url.getCharacterData(
@@ -35,7 +36,10 @@ export default {
       .then(data => {
         this.pets = data.data.pets.collected;
       })
-      .catch(response => console.log(response));
+      .catch(response => console.log(response))
+      .finally(() => {
+        this.$store.commit("disableLoading");
+      });
   },
   created() {},
   computed: {

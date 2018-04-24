@@ -8,7 +8,7 @@
         </div>
         <div class="column box">
           {{currentRoute}}
-          <!-- {{$route.name}} -->
+          <pulse-loader :loading="loading"></pulse-loader>
           <router-view></router-view>
         </div>
       </div>
@@ -25,7 +25,9 @@
 <script>
 import CharacterDisplay from "@/components/CharacterDisplay.vue";
 import CharacterNav from "@/components/CharacterNav.vue";
-import lodash from 'lodash'
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+import { mapGetters } from "vuex";
+import lodash from "lodash";
 
 export default {
   data() {
@@ -33,9 +35,11 @@ export default {
   },
   components: {
     CharacterDisplay,
-    CharacterNav
+    CharacterNav,
+    PulseLoader
   },
   computed: {
+    ...mapGetters(["loading"]),
     currentRoute() {
       return _.capitalize(this.$route.name);
     }

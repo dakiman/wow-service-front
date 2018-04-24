@@ -1,19 +1,8 @@
 <template>
   <div class="items">
     <!-- <h1>Items</h1> -->
-<pulse-loader :loading="true"></pulse-loader>
-
     <ul>
-      <item
-        v-for="item in items"
-        :id="item.id"
-        :name="item.name"
-        :type="'item'"
-        :quality="item.quality"
-        :icon="item.icon"
-        :key="item.id"
-        v-if="item.id != undefined"
-      ></item>
+      <item v-for="item in items" :id="item.id" :name="item.name" :type="'item'" :quality="item.quality" :icon="item.icon" :key="item.id" v-if="item.id != undefined"></item>
     </ul>
   </div>
 </template>
@@ -21,7 +10,6 @@
 
 <script>
 import Item from "@/components/Item.vue";
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
   data() {
@@ -30,25 +18,31 @@ export default {
     };
   },
   components: {
-    Item,
-    PulseLoader
+    Item
+  },
+  methods: {
+    apiCall() {
+      this.$store.commit("enableLoading");
+      api
+        .callWow(
+          url.getCharacterData(
+            this.$store.state.character.realm,
+            this.$store.state.character.name,
+            "items"
+          )
+        )
+        .then(data => {
+          this.items = data.data.items;
+        })
+        .catch(response => console.log(response))
+        .finally(() => {
+          this.$store.commit("disableLoading");
+        });
+    }
   },
   mounted() {
-    api
-      .callWow(
-        url.getCharacterData(
-          this.$store.state.character.realm,
-          this.$store.state.character.name,
-          "items"
-        )
-      )
-      .then(data => {
-        this.items = data.data.items;
-      })
-      .catch(response => console.log(response));
+    this.apiCall();
   },
-  created() {
-
-  }
+  created() {}
 };
 </script>

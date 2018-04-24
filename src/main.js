@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store'
 import router from './router'
-// import 'bulma/css/bulma.css'
 import './modules/customBulma.scss'
 import Auth from './modules/auth.js'
 import Api from './modules/api.js'
@@ -20,8 +19,6 @@ window.Event = new Vue()
 Vue.config.productionTip = false
 
 new Vue({
-  components: {
-  },
   store,
   router,
   render: h => h(App)
