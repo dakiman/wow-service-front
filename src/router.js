@@ -27,11 +27,11 @@ let routes = [
   {
     path: '/dashboard',
     component: Dashboard,
-    meta: { requiresAuth: true},
+    meta: {requiresAuth: true},      
     children: [
-      { path: '', component: SelectHelper, name: 'dashboard' },
-      { path: 'items', component: Items, name: 'items', meta: { requiresCharacter: true } },
-      { path: 'pets', component: Pets, name: 'pets', meta: { requiresCharacter: true } },
+      { path: '', component: SelectHelper, name: 'dashboard',  meta: { requiresAuth: true } },
+      { path: 'items', component: Items, name: 'items', meta: { requiresCharacter: true, requiresAuth: true } },
+      { path: 'pets', component: Pets, name: 'pets', meta: { requiresCharacter: true, requiresAuth: true } },
     ]
   },
   {

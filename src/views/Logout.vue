@@ -31,9 +31,7 @@ export default {
         .catch(({response}) => {
           this.msgBig = 'There was an issue during logout.'
           this.msgSmall = `Please wait a bit and try again.`
-          setTimeout(() => {
-            this.$router.push('/logout')
-          }, 1000)
+          auth.logout();
         })
     }
   },
