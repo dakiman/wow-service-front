@@ -5,17 +5,20 @@ Vue.use(Vuex)
 
 const state = {
   character: {},
+  savedCharacters: [],
   loading: false,
 }
 
 const mutations = {
   unsetCharacter: state => state.character = {},
   setCharacter: (state, character) => state.character = character,
-  enableLoading: (state) => state.loading = true,
-  disableLoading: (state) => state.loading = false,
+  enableLoading: state => state.loading = true,
+  disableLoading: state => state.loading = false,
+  addSavedCharacter: (state, character) => state.savedCharacters.push(character)
 }
 
 const getters = {
+  savedCharacters: state => state.savedCharacters,
   character: state => state.character,
   loading: state => state.loading
 }

@@ -14,17 +14,19 @@
 </style>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   data() {
     return {};
   },
   components: {},
-  methods: {},
-  mounted() {},
-  created() {},
+  methods: {
+		...mapMutations(['character'])
+	},
   computed: {
     characterExists() {
-      return !_.isEmpty(this.$store.state.character);
+      return !_.isEmpty(this.character);
     }
   }
 };

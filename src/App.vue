@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -53,7 +55,9 @@ export default {
       this.authenticated = false;
       this.user = null;
     });
-  }
+	},
+	computed: {
+	}
 };
 </script>
 
@@ -99,5 +103,9 @@ $sides: (
       padding-#{$side}: #{$space}px !important;
     }
   }
+}
+
+.sharpen {
+	border-radius: 0px;
 }
 </style>

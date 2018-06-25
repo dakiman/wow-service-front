@@ -10,6 +10,7 @@
 
 <script>
 import Item from "@/components/Item.vue";
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   data() {
@@ -21,28 +22,32 @@ export default {
     Item
   },
   methods: {
+		...mapMutations(['enableLoading', 'disableLoading']),
     apiCall() {
-      this.$store.commit("enableLoading");
+      this.enableLoading()
       api
         .callWow(
           url.getCharacterData(
-            this.$store.state.character.realm,
-            this.$store.state.character.name,
+            this.character.realm,
+            this.character.name,
             "items"
           )
         )
-        .then(data => {
-          this.items = data.data.items;
+        .then(({data}) => {
+          this.items = data.items;
         })
         .catch(response => console.log(response))
         .finally(() => {
-          this.$store.commit("disableLoading");
+          this.disableLoading()
         });
     }
   },
   mounted() {
     this.apiCall();
-  },
+	},
+	computed: {
+		...mapGetters(['character']),
+	},
   created() {}
 };
 </script>
