@@ -24,9 +24,10 @@
               Hello, {{user.name}}
             </div>
             <div class="navbar-dropdown is-right">
-              <a class="navbar-item is-active" href="">
-                Profile
-              </a>
+							<router-link class="navbar-item is-active" to="/profile">Profile</router-link>
+              <!-- <a class="navbar-item is-active" href=""> -->
+                <!-- Profile -->
+              <!-- </a> -->
             </div>
           </div>
         </div>

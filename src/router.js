@@ -5,6 +5,7 @@ import About from './views/About.vue'
 import Dashboard from './views/Dashboard.vue'
 import Login from './views/Login.vue'
 import Logout from './views/Logout.vue'
+import Profile from './views/Profile.vue'
 import Items from './views/nested-views/Items.vue'
 import Pets from './views/nested-views/Pets.vue'
 import SelectHelper from './views/nested-views/SelectHelper.vue'
@@ -43,6 +44,11 @@ let routes = [
     path: '/logout',
     name: 'logout',
     component: Logout
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: Profile
   }
 ]
 
