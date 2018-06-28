@@ -25,7 +25,7 @@ export default {
           auth.logout();
           this.$router.push("/");
         })
-        .catch(({ response }) => {
+        .catch( response  => {
           this.msgBig = "There was an issue during logout.";
           this.msgSmall = `Please wait a bit and try again.`;
           auth.logout();

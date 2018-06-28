@@ -22,9 +22,10 @@
 					<span class="">{{ character.name }}, Level {{ character.level }} {{ raceName }}
 						<span :style="{ color : classColor }">{{ className }}</span>
 					</span>
-					<button class="button is-primary sharpen is-fullwidth m-t-25 light-shadow" @click="clearChar">Search another character</button>
 					<br>
-					<button class="button is-primary sharpen" @click="addChar" :class="{ 'is-loading' : loading }" v-if="savedCharacterCheck">+</button>
+					<button class="button is-primary sharpen m-t-25 light-shadow" @click="clearChar">Search chararcter</button>
+					<button class="button is-primary sharpen m-t-25 m-l-15" @click="addChar" :class="{ 'is-loading' : loading }" v-if="savedCharacterCheck">+ Add Character</button>
+					<button v-else class="button is-primary sharpen has-text-light m-t-25 m-l-15" disabled> Character added!</button>
 				</div>
 			</div>
 		</div>
@@ -47,14 +48,14 @@ export default {
     ...mapMutations(["setCharacter", "unsetCharacter", "addSavedCharacter"]),
     addChar() {
       this.loading = true;
-      let data = {
-        name: this.name,
-        realm: this.realm
-      };
       api
-        .call("post", "/character", data)
+        .call("post", "/character", this.normalizedData)
         .then(({ data }) => {
+          console.log(data);
           this.addSavedCharacter(data);
+        })
+        .catch(response => {
+          console.log(response);
         })
         .finally(() => {
           this.loading = false;
@@ -81,7 +82,19 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["character", "savedCharacters"]),
+		...mapGetters(["character", "savedCharacters"]),
+		//make name and realm uppercase first letter for better consistency
+    normalizedData() {
+      let realm = this.realm.split(" ");
+      for (i = 0; i < realm.length; i++) {
+        realm[i] = _.upperFirst(realm[i]);
+      }
+      realm = realm.join(" ");
+      return {
+        name: _.upperFirst(_.lowerCase(this.name)),
+        realm: realm
+      };
+    },
     className() {
       return info.getClass(this.character.class);
     },
@@ -92,10 +105,7 @@ export default {
       return info.getClassColor(this.character.class);
     },
     savedCharacterCheck() {
-      return !_.find(this.savedCharacters, {
-        name: this.name,
-        realm: this.realm
-      });
+      return !_.find(this.savedCharacters, this.normalizedData);
     }
   }
 };
@@ -139,5 +149,9 @@ p {
 }
 p.subtitle {
   padding-top: 1rem;
+}
+
+:disabled::before {
+  content: "✔";
 }
 </style>
