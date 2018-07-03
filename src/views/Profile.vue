@@ -8,7 +8,8 @@
 				<div class="dataDiv">
 					<span class="">{{ character.name }}, Level {{ character.level }} {{ raceName(character) }}
 						<span :style="{ color : classColor(character) }">{{ className(character) }}</span>
-						<button :data-id=character.id class="delete-btn" @click="deleteCharacter($event)">asdads</button>
+						<br>
+						<button :class="{ 'is-loading' : loading }" :data-id=character.id class="delete-btn button is-primary sharpen m-t-15" @click="deleteCharacter($event)">Remove Character</button>
 					</span>
 				</div>
 			</div>
@@ -21,7 +22,7 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default {
   methods: {
-    ...mapMutations(["removeCharacter"]),
+    ...mapMutations(["removeCharacter", "enableLoading", "disableLoading"]),
     className(character) {
       return info.getClass(character.class);
     },
@@ -32,8 +33,10 @@ export default {
       return info.getClassColor(character.class);
 		},
 		deleteCharacter(event) {
-			let button = event.currentTarget;
-			let id = button.dataset['id'];
+
+			let button = event.currentTarget
+			let id = button.dataset['id']
+			this.enableLoading()
 			api
 				.call('delete', '/character/' + id)
 				.then(({data}) => {
@@ -42,11 +45,14 @@ export default {
 				.catch(response => {
 					console.log(response);
 				})
+				.finally(() => {
+					this.disableLoading()
+				})
 		},
 
   },
   computed: {
-    ...mapGetters(["savedCharacters"])
+    ...mapGetters(["savedCharacters", "loading"])
   }
 };
 </script>

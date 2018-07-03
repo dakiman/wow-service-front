@@ -43,7 +43,6 @@ export default {
       realm: "the maelstrom"
     };
   },
-  props: {},
   methods: {
     ...mapMutations(["setCharacter", "unsetCharacter", "addSavedCharacter"]),
     addChar() {

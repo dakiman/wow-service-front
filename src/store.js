@@ -6,7 +6,7 @@ Vue.use(Vuex)
 const state = {
   character: {},
   savedCharacters: [],
-  loading: false,
+  loading: false
 }
 
 const mutations = {

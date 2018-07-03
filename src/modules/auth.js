@@ -1,7 +1,7 @@
 import store from '../store'
 
 class Auth {
-  constructor() {
+  constructor () {
     this.token = window.localStorage.getItem('token')
     // get the user from local storage
     let userData = window.localStorage.getItem('user')
@@ -14,7 +14,7 @@ class Auth {
     }
   }
 
-  login(token, user) {
+  login (token, user) {
     window.localStorage.setItem('token', token)
     window.localStorage.setItem('user', JSON.stringify(user))
 
@@ -23,11 +23,11 @@ class Auth {
     this.token = token
     this.user = user
     this.getCharacters()
-    
+
     Event.$emit('userLoggedIn')
   }
 
-  logout() {
+  logout () {
     localStorage.clear()
 
     this.token = null
@@ -36,23 +36,23 @@ class Auth {
     Event.$emit('userLoggedOut')
   }
 
-  check() {
+  check () {
     return !!this.token
   }
 
-  getUser() {
+  getUser () {
     api.call('get', '/user')
       .then(({ user }) => {
         this.user = user
       })
   }
 
-  getCharacters() {
+  getCharacters () {
     api
       .call('get', '/character')
       .then(({data}) => {
-        if(data) {
-          store.state.savedCharacters = data;
+        if (data) {
+          store.state.savedCharacters = data
         }
         console.log(data)
       })

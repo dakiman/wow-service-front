@@ -8,7 +8,6 @@ import Api from './modules/api.js'
 import Url from './modules/url.js'
 import Info from './modules/info.js'
 
-
 window.axios = require('axios')
 window.url = new Url()
 window.api = new Api()

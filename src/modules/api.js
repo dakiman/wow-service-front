@@ -1,8 +1,8 @@
 class Api {
-  constructor() {
-    this.serverUrl = "http://127.0.0.1:8000/api"
+  constructor () {
+    this.serverUrl = 'http://127.0.0.1:8000/api'
   }
-  call(requestType, route, data = null) {
+  call (requestType, route, data = null) {
     return new Promise((resolve, reject) => {
       axios[requestType](this.serverUrl + route, data)
         .then(response => {
@@ -16,13 +16,13 @@ class Api {
         })
     })
   }
-  callWow(url, data = null) {
+  callWow (url, data = null) {
     return new Promise((resolve, reject) => {
       axios.get(url, { transformRequest: [(data, headers) => { delete headers.common.Authorization; return data }] })
         .then(response => {
           resolve(response)
         })
-        .catch(response  => {
+        .catch(response => {
           reject(response)
         })
     })

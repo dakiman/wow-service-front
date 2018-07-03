@@ -9,8 +9,8 @@ import Profile from './views/Profile.vue'
 import Items from './views/nested-views/Items.vue'
 import Pets from './views/nested-views/Pets.vue'
 import SelectHelper from './views/nested-views/SelectHelper.vue'
-import store from './store'
 
+import store from './store'
 
 Vue.use(Router)
 
@@ -28,11 +28,11 @@ let routes = [
   {
     path: '/dashboard',
     component: Dashboard,
-    meta: {requiresAuth: true},      
+    meta: {requiresAuth: true},
     children: [
-      { path: '', component: SelectHelper, name: 'dashboard',  meta: { requiresAuth: true } },
+      { path: '', component: SelectHelper, name: 'dashboard', meta: { requiresAuth: true } },
       { path: 'items', component: Items, name: 'items', meta: { requiresCharacter: true, requiresAuth: true } },
-      { path: 'pets', component: Pets, name: 'pets', meta: { requiresCharacter: true, requiresAuth: true } },
+      { path: 'pets', component: Pets, name: 'pets', meta: { requiresCharacter: true, requiresAuth: true } }
     ]
   },
   {
@@ -63,8 +63,8 @@ router.beforeEach((to, from, next) => {
       return
     }
   }
-  if(to.meta.requiresCharacter) {
-    if(_.isEmpty(store.state.character)) {
+  if (to.meta.requiresCharacter) {
+    if (_.isEmpty(store.state.character)) {
       next({ path: '/dashboard' })
       return
     }
