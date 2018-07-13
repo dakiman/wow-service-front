@@ -5,11 +5,12 @@
         <a class="navbar-item" href="https://bulma.io">
           <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
         </a>
-        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+        <!-- TODO: FIX THIS HAMBURGER -->
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active')">
+          <span ></span>
+          <span ></span>
+          <span ></span>
+        </div> 
       </div>
 
       <div id="navbarExampleTransparentExample" class="navbar-menu">
@@ -24,7 +25,7 @@
               Hello, {{user.name}}
             </div>
             <div class="navbar-dropdown is-right">
-							<router-link class="navbar-item is-active" to="/profile">Profile</router-link>
+							<router-link class="navbar-item" to="/profile">Profile</router-link>
               <!-- <a class="navbar-item is-active" href=""> -->
                 <!-- Profile -->
               <!-- </a> -->
@@ -38,7 +39,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -56,13 +57,13 @@ export default {
       this.authenticated = false;
       this.user = null;
     });
-	},
-	computed: {
-	}
+  },
+  computed: {}
 };
 </script>
 
 <style lang="scss">
+
 #app {
   text-align: center;
 }
@@ -93,20 +94,17 @@ $sides: (
   left,
   right
 ); // Leave this variable alone
-
 @each $space in $spaceamounts {
   @each $side in $sides {
     .m-#{str-slice($side, 0, 1)}-#{$space} {
       margin-#{$side}: #{$space}px !important;
     }
-
     .p-#{str-slice($side, 0, 1)}-#{$space} {
       padding-#{$side}: #{$space}px !important;
     }
   }
 }
-
 .sharpen {
-	border-radius: 0px;
+  border-radius: 0px;
 }
 </style>

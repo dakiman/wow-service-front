@@ -43,6 +43,13 @@ export default {
       realm: "the maelstrom"
     };
   },
+  created() {
+    if(this.$route.params.name && this.$route.params.realm) {
+      this.name = this.$route.params.name
+      this.realm = this.$route.params.realm
+      this.getChar()
+    }
+  },
   methods: {
     ...mapMutations(["setCharacter", "unsetCharacter", "addSavedCharacter"]),
     addChar() {

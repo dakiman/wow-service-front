@@ -31,3 +31,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.announcement {
+  text-align: center;
+}
+</style>
+

@@ -9,7 +9,9 @@
         <div class="column box">
           {{currentRoute}}
           <pulse-loader :loading="loading"></pulse-loader>
-          <router-view></router-view>
+          <div id="subrouteContainer">
+            <router-view></router-view>
+          </div>
         </div>
       </div>
     </div>
@@ -50,5 +52,8 @@ export default {
 <style scoped>
 .info-container {
   margin-top: 20px;
+}
+#subrouteContainer {
+  text-align: initial;
 }
 </style>

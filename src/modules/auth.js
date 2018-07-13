@@ -22,9 +22,9 @@ class Auth {
 
     this.token = token
     this.user = user
-    this.getCharacters()
-
     Event.$emit('userLoggedIn')
+    
+    this.getCharacters()
   }
 
   logout () {
