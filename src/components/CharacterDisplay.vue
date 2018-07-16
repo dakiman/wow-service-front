@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       loading: false,
-      name: "Dakis",
+      name: "Sernaos",
       realm: "the maelstrom"
     };
   },
