@@ -1,20 +1,32 @@
 <template>
 	<div>
-		<h1>Login</h1>
-
-		<p>
-			<label for="email">Email</label>
-
-			<input type="text" name="email" v-model="email">
-		</p>
-
-		<p>
-			<label for="password">Password</label>
-
-			<input type="password" name="password" v-model="password">
-		</p>
-
-		<button @click="login">Login</button>
+		<div class="container">
+			<div class="column is-one-third is-offset-one-third">
+				<h1 id="loginTitle">Enter your credentials</h1>
+				<div class="field">
+					<p class="control">
+						<input class="input sharpen" type="email" placeholder="Email" name="email" v-model="email">
+					</p>
+				</div>
+				<div class="field">
+					<p class="control">
+						<input class="input sharpen" type="password" placeholder="Password" v-model="password">
+					</p>
+				</div>
+				<div class="field">
+					<p class="control">
+						<button @click="login" id="loginBtn" :class="{ 'is-loading' : loading}" class="button is-success sharpen is-fullwidth">
+							Login
+						</button>
+					</p>
+				</div>
+				<div class="errorsList" v-if="errors != null">
+					<ul>
+						<li v-for="error in errors" :key="error[0]">{{error[0]}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -23,12 +35,16 @@ export default {
   data() {
     return {
       email: "daki@daki.com",
-      password: "password"
+      password: "password",
+      loading: false,
+      errors: null
     };
   },
 
   methods: {
     login() {
+			this.loading = true;
+			this.errors = null;
       let data = {
         email: this.email,
         password: this.password
@@ -39,10 +55,31 @@ export default {
           auth.login(data.token, data.user);
           this.$router.push("/dashboard");
         })
-        .catch(response => {
-          console.log(response);
+        .catch(({ response }) => {
+          this.errors = response.data.errors;
+        })
+        .finally(() => {
+          this.loading = false;
         });
     }
   }
 };
 </script>
+
+<style>
+#loginTitle {
+  font-size: 24px;
+  color: white;
+  margin: 15px;
+}
+#loginBtn {
+  font-size: 20px;
+  font-weight: 600;
+}
+.errorsList {
+	background-color: rgba(0, 0, 0, 0.3);
+	font-size: 20px;
+	padding: 5px;
+}
+</style>
+

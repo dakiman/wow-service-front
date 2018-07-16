@@ -45,6 +45,7 @@ export default {
   },
   created() {
     if (this.$route.params.name && this.$route.params.realm) {
+			this.unsetCharacter()
       this.name = this.$route.params.name;
       this.realm = this.$route.params.realm;
       this.getChar();
