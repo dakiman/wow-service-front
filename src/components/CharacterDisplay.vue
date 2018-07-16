@@ -44,10 +44,10 @@ export default {
     };
   },
   created() {
-    if(this.$route.params.name && this.$route.params.realm) {
-      this.name = this.$route.params.name
-      this.realm = this.$route.params.realm
-      this.getChar()
+    if (this.$route.params.name && this.$route.params.realm) {
+      this.name = this.$route.params.name;
+      this.realm = this.$route.params.realm;
+      this.getChar();
     }
   },
   methods: {
@@ -79,8 +79,10 @@ export default {
         .catch(response => {
           this.unsetCharacter();
           console.log(response);
-          this.loading = false;
-        });
+        })
+				.finally(() => {
+					this.loading = false
+				})
     },
     clearChar() {
       this.$store.commit("unsetCharacter");
@@ -88,8 +90,8 @@ export default {
     }
   },
   computed: {
-		...mapGetters(["character", "savedCharacters"]),
-		//make name and realm uppercase first letter for better consistency
+    ...mapGetters(["character", "savedCharacters"]),
+    //make name and realm uppercase first letter for better consistency
     normalizedData() {
       let realm = this.realm.split(" ");
       for (i = 0; i < realm.length; i++) {

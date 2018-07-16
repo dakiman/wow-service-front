@@ -8,6 +8,7 @@ import Logout from './views/Logout.vue'
 import Profile from './views/Profile.vue'
 import Items from './views/nested-views/Items.vue'
 import Pets from './views/nested-views/Pets.vue'
+import Achievements from './views/nested-views/Achievements.vue'
 import SelectHelper from './views/nested-views/SelectHelper.vue'
 
 import store from './store'
@@ -32,7 +33,8 @@ let routes = [
     children: [
       { path: '', component: SelectHelper, name: 'dashboard', meta: { requiresAuth: true } },
       { path: 'items', component: Items, name: 'items', meta: { requiresCharacter: true, requiresAuth: true } },
-      { path: 'pets', component: Pets, name: 'pets', meta: { requiresCharacter: true, requiresAuth: true } }
+      { path: 'pets', component: Pets, name: 'pets', meta: { requiresCharacter: true, requiresAuth: true } },
+      { path: 'achievements', component: Achievements, name: 'achievements', meta: { requiresCharacter: true, requiresAuth: true } }
     ]
   },
   {
