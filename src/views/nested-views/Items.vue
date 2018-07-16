@@ -1,8 +1,6 @@
 <template>
 	<div class="items">
-		<div v-for="item in items" :key="item.id">
-			<item :id="item.id" :name="item.name" :type="'item'" :quality="item.quality" :icon="item.icon"  v-if="item.id != undefined"></item>
-		</div>
+		<item v-for="item in items" :key="item.id" :item="item" :type="'item'"></item>
 	</div>
 </template>
 
@@ -42,7 +40,7 @@ export default {
     }
   },
   mounted() {
-    this.apiCall();
+    this.apiCall()
   },
   computed: {
     ...mapGetters(["character"])

@@ -1,16 +1,14 @@
 <template>
-  <div class="pets">
-    <!-- <h1>Pets</h1> -->
-    <ul>
-      <item v-for="pet in uniquePets" :id="pet.creatureId" :name="pet.name" :type="'npc'" :quality="pet.qualityId" :icon="pet.icon" :key="pet.index"></item>
-    </ul>
-  </div>
+	<div class="pets">
+		<!-- <h1>Pets</h1> -->
+		<item v-for="pet in uniquePets" :key="pet.index" :item="pet" :type="'npc'"></item>
+	</div>
 </template>
 
 
 <script>
 import Item from "@/components/Item.vue";
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   data() {
@@ -22,30 +20,33 @@ export default {
     Item
   },
   methods: {
-		...mapMutations(['enableLoading', 'disableLoading'])
+    ...mapMutations(["enableLoading", "disableLoading"]),
+    apiCall() {
+      api
+        .callWow(
+          url.getCharacterData(
+            this.character.realm,
+            this.character.name,
+            "pets"
+          )
+        )
+        .then(({ data }) => {
+          this.pets = data.pets.collected;
+        })
+        .catch(response => console.log(response))
+        .finally(() => {
+          this.disableLoading();
+        });
+    }
   },
   mounted() {
-    this.enableLoading()
-    api
-      .callWow(
-        url.getCharacterData(
-          this.character.realm,
-          this.character.name,
-          "pets"
-        )
-      )
-      .then(({data}) => {
-        this.pets = data.pets.collected
-      })
-      .catch(response => console.log(response))
-      .finally(() => {
-				this.disableLoading()
-      });
+		this.enableLoading()
+		this.apiCall()
   },
   computed: {
-		...mapGetters(['character']),
+    ...mapGetters(["character"]),
     uniquePets: function() {
-      return _.uniqBy(this.pets, 'creatureId')
+      return _.uniqBy(this.pets, "creatureId");
     }
   }
 };

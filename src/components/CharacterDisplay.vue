@@ -25,7 +25,7 @@
 					<br>
 					<button class="button is-primary sharpen m-t-25 light-shadow" @click="clearChar">Search chararcter</button>
 					<button class="button is-primary sharpen m-t-25 m-l-15" @click="addChar" :class="{ 'is-loading' : loading }" v-if="savedCharacterCheck">+ Add Character</button>
-					<button v-else class="button is-primary sharpen has-text-light m-t-25 m-l-15" disabled> Character added!</button>
+					<button v-else class="button sharpen m-t-25 m-l-15" disabled> Character added!</button>
 				</div>
 			</div>
 		</div>
@@ -80,9 +80,9 @@ export default {
           this.unsetCharacter();
           console.log(response);
         })
-				.finally(() => {
-					this.loading = false
-				})
+        .finally(() => {
+          this.loading = false;
+        });
     },
     clearChar() {
       this.$store.commit("unsetCharacter");
@@ -159,7 +159,12 @@ p.subtitle {
   padding-top: 1rem;
 }
 
+:disabled {
+  background-color: lightgray;
+  border: 1.5px solid gray;
+}
+
 :disabled::before {
-  content: "✔";
+  content: "✔\00a0";
 }
 </style>

@@ -21,7 +21,7 @@ export default {
 <style scoped lang="scss">
 button {
   font-size: 16px;
-  width: calc(33% - 4px);
+  width: calc(50% - 4px);
   margin: 2px;
   &.router-link-exact-active {
     border: 1px solid black !important;
