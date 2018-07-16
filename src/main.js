@@ -9,6 +9,7 @@ import Url from './modules/url.js'
 import Info from './modules/info.js'
 
 window.axios = require('axios')
+window._ = require('lodash');
 window.url = new Url()
 window.api = new Api()
 window.auth = new Auth()

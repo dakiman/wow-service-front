@@ -6,6 +6,8 @@ import Dashboard from './views/Dashboard.vue'
 import Login from './views/Login.vue'
 import Logout from './views/Logout.vue'
 import Profile from './views/Profile.vue'
+import Register from './views/Register.vue'
+import Confirmation from './views/Confirmation.vue'
 import Items from './views/nested-views/Items.vue'
 import Pets from './views/nested-views/Pets.vue'
 import Achievements from './views/nested-views/Achievements.vue'
@@ -48,9 +50,19 @@ let routes = [
     component: Logout
   },
   {
+    path: '/register',
+    name: 'register',
+    component: Register
+  },
+  {
     path: '/profile',
     name: 'profile',
     component: Profile
+  },
+  {
+    path: '/confirmation',
+    name: 'confirmation',
+    component: Confirmation
   }
 ]
 

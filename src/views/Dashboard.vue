@@ -29,7 +29,7 @@ import CharacterDisplay from "@/components/CharacterDisplay.vue";
 import CharacterNav from "@/components/CharacterNav.vue";
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import { mapGetters } from "vuex";
-import lodash from "lodash";
+// import lodash from "lodash";
 
 export default {
   data() {

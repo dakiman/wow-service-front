@@ -1,41 +1,46 @@
 <template>
-  <div id="app" class="">
-    <nav class="navbar is-dark light-shadow">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
-        </a>
-        <!-- TODO: FIX THIS HAMBURGER -->
-        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active')">
-          <span ></span>
-          <span ></span>
-          <span ></span>
-        </div> 
-      </div>
+	<div id="app" class="">
+		<nav class="navbar is-dark light-shadow">
+			<div class="navbar-brand">
+				<a class="navbar-item" href="https://bulma.io">
+					<img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+				</a>
+				<!-- TODO: FIX THIS HAMBURGER -->
+				<div class="navbar-burger burger" data-target="navbarExampleTransparentExample" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active')">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
 
-      <div id="navbarExampleTransparentExample" class="navbar-menu">
-        <div class="navbar-end">
-          <router-link class="navbar-item" to="/">Home</router-link>
-          <router-link class="navbar-item" to="/about">About</router-link>
-          <router-link class="navbar-item" to="/dashboard">Dashboard</router-link>
-          <router-link class="navbar-item" to="/logout" v-if="authenticated && user">Logout</router-link>
-          <router-link class="navbar-item" to="/login" v-else>Login</router-link>
-          <div class="navbar-item has-dropdown is-hoverable" v-if="authenticated && user">
-            <div class="navbar-link">
-              Hello, {{user.name}}
-            </div>
-            <div class="navbar-dropdown is-right">
+			<div id="navbarExampleTransparentExample" class="navbar-menu">
+				<div class="navbar-end">
+					<router-link class="navbar-item" to="/">Home</router-link>
+					<router-link class="navbar-item" to="/about">About</router-link>
+					<router-link class="navbar-item" to="/dashboard">Dashboard</router-link>
+					<template v-if="authenticated && user">
+						<router-link class="navbar-item" to="/logout">Logout</router-link>
+					</template>
+					<template v-else>
+						<router-link class="navbar-item" to="/register">Register</router-link>
+						<router-link class="navbar-item" to="/login">Login</router-link>
+					</template>
+					<div class="navbar-item has-dropdown is-hoverable" v-if="authenticated && user">
+						<div class="navbar-link">
+							Hello, {{user.name}}
+						</div>
+						<div class="navbar-dropdown is-right">
 							<router-link class="navbar-item" to="/profile">Profile</router-link>
-              <!-- <a class="navbar-item is-active" href=""> -->
-                <!-- Profile -->
-              <!-- </a> -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <router-view/>
-  </div>
+							<!-- <a class="navbar-item is-active" href=""> -->
+							<!-- Profile -->
+							<!-- </a> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<router-view/>
+	</div>
 </template>
 
 <script>
@@ -63,7 +68,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 #app {
   text-align: center;
 }

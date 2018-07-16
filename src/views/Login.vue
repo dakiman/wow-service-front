@@ -20,17 +20,15 @@
 						</button>
 					</p>
 				</div>
-				<div class="errorsList" v-if="errors != null">
-					<ul>
-						<li v-for="error in errors" :key="error[0]">{{error[0]}}</li>
-					</ul>
-				</div>
+				<errorList :errors="this.errors"></errorList>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import ErrorList from "@/components/ErrorList.vue";
+
 export default {
   data() {
     return {
@@ -40,11 +38,12 @@ export default {
       errors: null
     };
   },
-
+  components: {
+    ErrorList
+  },
   methods: {
     login() {
-			this.loading = true;
-			this.errors = null;
+      this.loading = true;
       let data = {
         email: this.email,
         password: this.password
@@ -77,9 +76,9 @@ export default {
   font-weight: 600;
 }
 .errorsList {
-	background-color: rgba(0, 0, 0, 0.3);
-	font-size: 20px;
-	padding: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 20px;
+  padding: 5px;
 }
 </style>
 

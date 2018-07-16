@@ -41,8 +41,8 @@ export default {
   margin: 0 10% 0 10%;
 }
 #achievementCounter {
-	margin: 8px 5px;
-	font-size: 20px;
+  margin: 8px 5px;
+  font-size: 20px;
 }
 </style>
 
