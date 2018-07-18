@@ -16,6 +16,7 @@ window.auth = new Auth()
 window.info = new Info()
 
 window.Event = new Vue()
+window.Vue = Vue
 Vue.config.productionTip = false
 
 new Vue({

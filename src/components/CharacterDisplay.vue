@@ -17,6 +17,7 @@
 						</div>
 					</div>
 					<button class="button is-block is-primary sharpen is-large is-fullwidth" :class="{ 'is-loading' : loading }" @click="getChar">Search</button>
+					<errorList id="errorList" :errors="this.errors"></errorList>
 				</div>
 				<div v-else>
 					<span class="">{{ character.name }}, Level {{ character.level }} {{ raceName }}
@@ -25,7 +26,7 @@
 					<br>
 					<button class="button is-primary sharpen m-t-25 light-shadow" @click="clearChar">Search chararcter</button>
 					<button class="button is-primary sharpen m-t-25 m-l-15" @click="addChar" :class="{ 'is-loading' : loading }" v-if="savedCharacterCheck">+ Add Character</button>
-					<button v-else class="button sharpen m-t-25 m-l-15" disabled> Character added!</button>
+					<button v-else class="button sharpen m-t-25 m-l-15" disabled> Character added! </button>
 				</div>
 			</div>
 		</div>
@@ -34,18 +35,24 @@
 
 <script>
 import { mapGetters, mapMutations } from "vuex";
+import ErrorList from "@/components/ErrorList.vue";
+
 export default {
   name: "CharacterDisplay",
   data() {
     return {
       loading: false,
       name: "Sernaos",
-      realm: "the maelstrom"
+      realm: "the maelstrom",
+      errors: {}
     };
+  },
+  components: {
+    ErrorList
   },
   created() {
     if (this.$route.params.name && this.$route.params.realm) {
-			this.unsetCharacter()
+      this.unsetCharacter();
       this.name = this.$route.params.name;
       this.realm = this.$route.params.realm;
       this.getChar();
@@ -73,13 +80,13 @@ export default {
       api
         .callWow(url.getCharacter(this.realm, this.name))
         .then(({ data }) => {
-          console.log(data);
+          this.errors = {};
           this.setCharacter(data);
           this.loading = false;
         })
         .catch(response => {
+          Vue.set(this.errors, "character", ["Character not found."]);
           this.unsetCharacter();
-          console.log(response);
         })
         .finally(() => {
           this.loading = false;
@@ -167,5 +174,9 @@ p.subtitle {
 
 :disabled::before {
   content: "✔\00a0";
+}
+
+#errorList {
+  margin-top: 10px;
 }
 </style>
