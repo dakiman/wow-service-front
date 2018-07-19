@@ -14,9 +14,10 @@ export default {
   created() {},
   computed: {
     itemIndex() {
-      if (this.item.id != undefined) return this.item.id;
-      else if (this.item.creatureId != undefined) return this.item.creatureId;
-      else return undefined;
+      if (this.item.id != undefined && this.type == 'item') return this.item.id;
+      else if (this.item.creatureId != undefined && this.type == 'npc') return this.item.creatureId;
+			else if (this.item.spellId != undefined && this.type == 'spell') return this.item.spellId
+			else return undefined;
     },
     itemQuality() {
       if (this.item.quality != undefined) return this.item.quality;

@@ -1,8 +1,8 @@
 <template>
 	<div class="achievements">
 		<div id="progressContainer">
-			<p id="achievementCounter">Points : {{ character.achievementPoints }} / 29220</p>
-			<progress class="progress is-success has-background-primary" :value="achiPoints" max="29220"></progress>
+			<p id="achievementCounter">Achievement points : {{ character.achievementPoints }} / 29220</p>
+			<progress class="progress is-success has-background-primary sharpen" :value="achiPoints" max="29220"></progress>
 		</div>
 	</div>
 </template>

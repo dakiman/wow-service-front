@@ -4,6 +4,7 @@
 			<router-link to="/dashboard/items" tag="button" class="button sharpen">Items</router-link>
 			<router-link to="/dashboard/pets" tag="button" class="button sharpen">Pets</router-link>
 			<router-link to="/dashboard/achievements" tag="button" class="button sharpen">Achievements</router-link>
+			<router-link to="/dashboard/mounts" tag="button" class="button sharpen">Mounts</router-link>
 		</div>
 	</div>
 </template>

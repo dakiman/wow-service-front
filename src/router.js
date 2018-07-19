@@ -10,6 +10,7 @@ import Register from './views/Register.vue'
 import Confirmation from './views/Confirmation.vue'
 import Items from './views/nested-views/Items.vue'
 import Pets from './views/nested-views/Pets.vue'
+import Mounts from './views/nested-views/Mounts.vue'
 import Achievements from './views/nested-views/Achievements.vue'
 import SelectHelper from './views/nested-views/SelectHelper.vue'
 
@@ -36,7 +37,8 @@ let routes = [
       { path: '', component: SelectHelper, name: 'dashboard', meta: { requiresAuth: true } },
       { path: 'items', component: Items, name: 'items', meta: { requiresCharacter: true, requiresAuth: true } },
       { path: 'pets', component: Pets, name: 'pets', meta: { requiresCharacter: true, requiresAuth: true } },
-      { path: 'achievements', component: Achievements, name: 'achievements', meta: { requiresCharacter: true, requiresAuth: true } }
+      { path: 'achievements', component: Achievements, name: 'achievements', meta: { requiresCharacter: true, requiresAuth: true } },
+      { path: 'mounts', component: Mounts, name: 'mounts', meta: { requiresCharacter: true, requiresAuth: true } },
     ]
   },
   {
