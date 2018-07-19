@@ -40,8 +40,8 @@ export default {
     }
   },
   mounted() {
-		this.enableLoading()
-		this.apiCall()
+    this.enableLoading();
+    this.apiCall();
   },
   computed: {
     ...mapGetters(["character"]),

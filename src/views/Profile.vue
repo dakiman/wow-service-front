@@ -6,11 +6,13 @@
 					<img :src="'https://render-eu.worldofwarcraft.com/character/' + character.thumbnail" alt="" width="100%">
 				</figure>
 				<div class="dataDiv">
-						<span id="charInfo"><router-link :to="{name : 'dashboard', params: {name: character.name, realm: character.realm} }">{{ character.name }}, Level {{ character.level }} {{ raceName(character) }}</router-link></span>
-						<br>
-						<span :style="{ color : classColor(character) }">{{ className(character) }}</span>
-						<br>
-						<button :class="{ 'is-loading' : loading }" :data-id=character.id class="delete-btn button is-primary sharpen m-t-15" @click="deleteCharacter($event)">Remove Character</button>
+					<span id="charInfo">
+						<router-link :to="{name : 'dashboard', params: {name: character.name, realm: character.realm} }">{{ character.name }}, Level {{ character.level }} {{ raceName(character) }}</router-link>
+					</span>
+					<br>
+					<span :style="{ color : classColor(character) }">{{ className(character) }}</span>
+					<br>
+					<button :class="{ 'is-loading' : loading }" :data-id=character.id class="delete-btn button is-primary sharpen m-t-15" @click="deleteCharacter($event)">Remove Character</button>
 				</div>
 			</div>
 		</div>
@@ -79,10 +81,10 @@ export default {
   border-radius: 50px;
 }
 .dataDiv {
-	width: 75%;
+  width: 75%;
 }
 #charInfo {
-	font-size: 14px;
+  font-size: 14px;
 }
 a:hover {
   color: white;

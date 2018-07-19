@@ -67,13 +67,13 @@ export default {
       api
         .call("post", "/register", data)
         .then(({ data }) => {
-          //   this.$router.push({ path: "/confirmation", params: { name: this.name } });
-          this.$router.push("/confirmation");
-          console.log(data);
+          this.$router.push({
+            name: "confirmation",
+            params: { name: this.name }
+          });
         })
         .catch(({ response }) => {
           this.errors = response.data.errors;
-          console.log(response);
         })
         .finally(() => {
           this.loading = false;

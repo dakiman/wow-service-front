@@ -25,7 +25,7 @@ export default {
       api
         .callWow(
           url.getCharacterData(
-        	this.character.realm,
+            this.character.realm,
             this.character.name,
             "items"
           )
@@ -40,7 +40,7 @@ export default {
     }
   },
   mounted() {
-    this.apiCall()
+    this.apiCall();
   },
   computed: {
     ...mapGetters(["character"])

@@ -1,6 +1,7 @@
 <template>
 	<div class="confimation">
-		<h1>Welcome to the community! <router-link to="/login">Click here</router-link> to login.</h1>
+		<h1>Welcome to the community {{ this.name }}!
+			<router-link to="/login">Click here</router-link> to login.</h1>
 	</div>
 </template>
 
@@ -8,11 +9,10 @@
 export default {
   data() {
     return {
-      name: "Placeholder"
+      name: ""
     };
   },
   created() {
-    console.log(this.$route.params.name)
     if (this.$route.params.name) {
       this.name = this.$route.params.name;
     }

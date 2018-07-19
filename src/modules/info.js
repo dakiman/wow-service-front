@@ -1,8 +1,9 @@
 class Info {
-  constructor () {
+  constructor() {
 
   }
-  getClass (classId) {
+
+  getClass(classId) {
     let classes = {
       1: 'Warrior',
       2: 'Paladin',
@@ -19,7 +20,8 @@ class Info {
     }
     return classes[classId]
   }
-  getRace (raceId) {
+
+  getRace(raceId) {
     let races = {
       1: 'Human',
       2: 'Orc',
@@ -43,7 +45,8 @@ class Info {
     }
     return races[raceId]
   }
-  getClassColor (classId) {
+
+  getClassColor(classId) {
     let colors = {
       1: '#C79C6E',
       2: '#F58CBA',
@@ -60,6 +63,7 @@ class Info {
     }
     return colors[classId]
   }
+  
 }
 
 export default Info

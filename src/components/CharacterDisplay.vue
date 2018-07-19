@@ -65,7 +65,6 @@ export default {
       api
         .call("post", "/character", this.normalizedData)
         .then(({ data }) => {
-          console.log(data);
           this.addSavedCharacter(data);
         })
         .catch(response => {
@@ -80,12 +79,16 @@ export default {
       api
         .callWow(url.getCharacter(this.realm, this.name))
         .then(({ data }) => {
+          console.log(data);
           this.errors = {};
           this.setCharacter(data);
           this.loading = false;
         })
-        .catch(response => {
-          Vue.set(this.errors, "character", ["Character not found."]);
+        .catch(({ response }) => {
+          //use vue global instance to set a property of the object
+          //OTHERWISE THE COMPUTED PROPERTY WONT UPDATE
+          //ALWAYS USE THIS TO ADD DATA TO OBJECT
+          Vue.set(this.errors, "character", [response.data.reason]);
           this.unsetCharacter();
         })
         .finally(() => {
