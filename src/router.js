@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
+import Realms from './views/Realms.vue'
+import SingleRealm from './views/SingleRealm.vue'
 import Dashboard from './views/Dashboard.vue'
 import Login from './views/Login.vue'
 import Logout from './views/Logout.vue'
@@ -28,6 +30,16 @@ let routes = [
     path: '/about',
     name: 'about',
     component: About
+  },
+  {
+    path: '/realms',
+    name: 'realms',
+    component: Realms
+  },
+  {
+    path: '/realms/:slug',
+    name: 'singleRealm',
+    component: SingleRealm
   },
   {
     path: '/dashboard',

@@ -17,6 +17,7 @@
 				<div class="navbar-end">
 					<router-link class="navbar-item" to="/">Home</router-link>
 					<router-link class="navbar-item" to="/about">About</router-link>
+					<router-link class="navbar-item" to="/realms">Realms</router-link>
 					<router-link class="navbar-item" to="/dashboard">Dashboard</router-link>
 					<template v-if="authenticated && user">
 						<router-link class="navbar-item" to="/logout">Logout</router-link>

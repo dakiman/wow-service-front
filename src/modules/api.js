@@ -1,6 +1,6 @@
 class Api {
   constructor () {
-    this.serverUrl = 'http://127.0.0.1:8000/api'
+    this.serverUrl = 'http://wow-service.com/api'
   }
   call (requestType, route, data = null) {
     return new Promise((resolve, reject) => {

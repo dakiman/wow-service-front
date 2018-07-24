@@ -1,6 +1,6 @@
 <template>
 	<div class="mounts">
-		{{ this.collected }} / {{ this.notCollected }}
+		<div v-if="this.collected != 0" class="collected">Collected : [ {{ this.collected }} / {{ this.notCollected }} ]</div>
 		<item v-for="mount in mounts" :key="mount.index" :item="mount" :type="'spell'"></item>
 	</div>
 </template>
@@ -12,7 +12,7 @@ import { mapGetters, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      mounts: "",
+      mounts: {},
       collected: 0,
       notCollected: 0
     };
@@ -38,13 +38,14 @@ export default {
         })
         .catch(response => console.log(response))
         .finally(() => {
-          this.disableLoading();
+					this.disableLoading();
+
         });
     }
   },
   mounted() {
     this.enableLoading();
-    this.apiCall();
+		this.apiCall();
   },
   computed: {
     ...mapGetters(["character"])
