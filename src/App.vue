@@ -20,7 +20,6 @@
 					<router-link class="navbar-item" to="/realms">Realms</router-link>
 					<router-link class="navbar-item" to="/dashboard">Dashboard</router-link>
 					<template v-if="authenticated && user">
-						<router-link class="navbar-item" to="/logout">Logout</router-link>
 					</template>
 					<template v-else>
 						<router-link class="navbar-item" to="/register">Register</router-link>
@@ -32,6 +31,8 @@
 						</div>
 						<div class="navbar-dropdown is-right">
 							<router-link class="navbar-item" to="/profile">Profile</router-link>
+							<router-link class="navbar-item" to="/logout">Logout</router-link>
+
 							<!-- <a class="navbar-item is-active" href=""> -->
 							<!-- Profile -->
 							<!-- </a> -->

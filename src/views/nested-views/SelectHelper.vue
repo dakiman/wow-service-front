@@ -13,17 +13,15 @@
 </style>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   data() {
     return {};
   },
   components: {},
-  methods: {
-    ...mapMutations(["character"])
-  },
   computed: {
+    ...mapGetters(["character"]),
     characterExists() {
       return !_.isEmpty(this.character);
     }

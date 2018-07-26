@@ -16,8 +16,8 @@ const mutations = {
   disableLoading: state => state.loading = false,
   addSavedCharacter: (state, character) => state.savedCharacters.push(character),
   removeCharacter: (state, id) => {
-    state.savedCharacters = _.remove(state.savedCharacters, character => {
-      return character.id != id
+    _.remove(state.savedCharacters, character => {
+      return character.id == id
     })
   }
 }
