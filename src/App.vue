@@ -3,7 +3,7 @@
 		<nav class="navbar is-dark light-shadow">
 			<div class="navbar-brand">
 				<a class="navbar-item" href="https://bulma.io">
-					<img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+					<img src="https://dcnetworks.ie/wp/wp-content/uploads/2017/11/placeholder-logo-2.png" alt="" width="112" height="28">
 				</a>
 				<!-- TODO: FIX THIS HAMBURGER -->
 				<div class="navbar-burger burger" data-target="navbarExampleTransparentExample" onclick="document.querySelector('.navbar-menu').classList.toggle('is-active')">
