@@ -32,8 +32,8 @@ import ErrorList from "@/components/ErrorList.vue";
 export default {
   data() {
     return {
-      email: "daki@daki.com",
-      password: "password",
+      email: "",
+      password: "",
       loading: false,
       errors: null
     };

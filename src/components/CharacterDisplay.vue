@@ -13,7 +13,7 @@
 					</div>
 					<div class="field">
 						<div class="control">
-							<input class="input is-large sharpen" placeholder="" v-model="realm">
+							<input class="input is-large sharpen" placeholder="Realm Name" v-model="realm">
 						</div>
 					</div>
 					<button class="button is-block is-primary sharpen is-large is-fullwidth" :class="{ 'is-loading' : loading }" @click="getChar">Search</button>
@@ -42,8 +42,8 @@ export default {
   data() {
     return {
       loading: false,
-      name: "Sernaos",
-      realm: "the maelstrom",
+      name: "",
+      realm: "",
       errors: {}
     };
   },
