@@ -1,6 +1,6 @@
 <template>
 	<div class="about">
-		<div class="charContainer flexContainer">
+		<div class="charContainer flexContainer" v-if="this.savedCharacters.length != 0">
 			<div class="singleChar flexContainer" v-for="character in this.savedCharacters" :key="character.id">
 				<figure class="avatar">
 					<img :src="'https://render-eu.worldofwarcraft.com/character/' + character.thumbnail" alt="" width="100%">
@@ -15,6 +15,9 @@
 					<button :class="{ 'is-loading' : loading }" :data-id=character.id class="delete-btn button is-primary sharpen m-t-15" @click="deleteCharacter($event)">Remove Character</button>
 				</div>
 			</div>
+		</div>
+		<div v-else>
+			No characters added. Go to the <router-link to="/dashboard">dashboard</router-link> to add some.
 		</div>
 	</div>
 </template>
@@ -72,6 +75,16 @@ export default {
   height: 150px;
   width: 350px;
   display: flex;
+}
+.profileInfo {
+  padding: 3% 3% 3% 3%;
+  background: rgba(1, 1, 1, 0.5);
+  max-width: 50%;
+}
+.profileContainer {
+	display:flex;
+	align-items:center;
+	justify-content: center;
 }
 .avatar {
   align-self: flex-start;

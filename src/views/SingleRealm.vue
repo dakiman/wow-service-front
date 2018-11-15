@@ -2,8 +2,11 @@
 	<div class="singleRealm">
 		<h1>This is a single realm {{$route.params.slug | sanitize}}</h1>
 		<!-- {{realm}} -->
+		<br>
 		Type: {{realm.type | sanitize}}
+		<br>
 		Population: {{ realm.population | capitalize}}
+		<br>
 		Last updated: {{updatedAt}} mins ago
 	</div>
 </template>
